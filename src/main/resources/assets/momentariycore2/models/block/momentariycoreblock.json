@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "momentariycore2:blocks/momentariycore",
+    "up": "momentariycore2:blocks/momentariycore",
+    "north": "momentariycore2:blocks/momentariycore",
+    "east": "momentariycore2:blocks/momentariycore",
+    "south": "momentariycore2:blocks/momentariycore",
+    "west": "momentariycore2:blocks/momentariycore",
+    "particle": "momentariycore2:blocks/momentariycore"
+  }
+}

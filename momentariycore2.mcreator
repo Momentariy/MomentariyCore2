@@ -1,0 +1,85 @@
+{
+  "id_map": {},
+  "mod_elements": [
+    {
+      "name": "MC2TAB",
+      "type": "tab",
+      "sortid": 5,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {}
+    },
+    {
+      "name": "MomentariyCoreBlock",
+      "type": "block",
+      "sortid": 2,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {}
+    },
+    {
+      "name": "MomentariyCore2Block",
+      "type": "block",
+      "sortid": 3,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {}
+    },
+    {
+      "name": "PerodiumCraftBlock",
+      "type": "block",
+      "sortid": 4,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {}
+    },
+    {
+      "name": "Momentariy",
+      "type": "item",
+      "sortid": 1,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {}
+    },
+    {
+      "name": "SpongeBobSquePents",
+      "type": "block",
+      "sortid": 6,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {}
+    }
+  ],
+  "variable_elements": [],
+  "sound_elements": [],
+  "language_map": {
+    "en_us": {
+      "itemGroup.tabmc2tab": "§4Momentariy§0Core§e2",
+      "block.momentariycore2.spongebobsquepents": "§eBlock of Spongebob Squarepants Reload",
+      "item.momentariycore2.momentariy": "§4Momentariy §fModder",
+      "block.momentariycore2.momentariycoreblock": "§4Block of Momentariy§0Core",
+      "block.momentariycore2.momentariycore2block": "§4Block of Momentariy §0Core§e2",
+      "block.momentariycore2.perodiumcraftblock": "§8Block of PerodiumCraft"
+    }
+  },
+  "workspaceSettings": {
+    "modid": "momentariycore2",
+    "modName": "Momentariy Core2",
+    "version": "2.1",
+    "description": "Core for Momentariy mods on version 1.14.4",
+    "author": "Momentariy",
+    "websiteURL": "https://perodiumcraft.ucoz.net",
+    "disableForgeVersionCheck": true,
+    "serverSideOnly": true,
+    "updateURL": "https://perodiumcraft.ucoz.net/MomentariyCore/version.json",
+    "modPicture": "banner",
+    "requiredMods": [],
+    "dependencies": [],
+    "dependants": [],
+    "mcreatorDependencies": [],
+    "currentGenerator": "1.14.4",
+    "usesProFeatures": false,
+    "lockBaseModFiles": false
+  },
+  "mcreatorVersion": 202000209617
+}
