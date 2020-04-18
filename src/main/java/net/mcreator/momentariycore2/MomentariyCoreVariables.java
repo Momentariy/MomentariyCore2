@@ -14,7 +14,7 @@ import net.minecraft.client.Minecraft;
 
 import java.util.function.Supplier;
 
-public class momentariycore2Variables {
+public class MomentariyCoreVariables {
 	public static class WorldVariables extends WorldSavedData {
 		public static final String DATA_NAME = "momentariycore2_worldvars";
 		public WorldVariables() {
@@ -37,9 +37,9 @@ public class momentariycore2Variables {
 		public void syncData(World world) {
 			this.markDirty();
 			if (world.isRemote) {
-				momentariycore2.PACKET_HANDLER.sendToServer(new WorldSavedDataSyncMessage(1, this));
+				MomentariyCore.PACKET_HANDLER.sendToServer(new WorldSavedDataSyncMessage(1, this));
 			} else {
-				momentariycore2.PACKET_HANDLER.send(PacketDistributor.DIMENSION.with(world.dimension::getType),
+				MomentariyCore.PACKET_HANDLER.send(PacketDistributor.DIMENSION.with(world.dimension::getType),
 						new WorldSavedDataSyncMessage(1, this));
 			}
 		}
@@ -75,9 +75,9 @@ public class momentariycore2Variables {
 		public void syncData(World world) {
 			this.markDirty();
 			if (world.isRemote) {
-				momentariycore2.PACKET_HANDLER.sendToServer(new WorldSavedDataSyncMessage(0, this));
+				MomentariyCore.PACKET_HANDLER.sendToServer(new WorldSavedDataSyncMessage(0, this));
 			} else {
-				momentariycore2.PACKET_HANDLER.send(PacketDistributor.ALL.noArg(), new WorldSavedDataSyncMessage(0, this));
+				MomentariyCore.PACKET_HANDLER.send(PacketDistributor.ALL.noArg(), new WorldSavedDataSyncMessage(0, this));
 			}
 		}
 		static MapVariables clientSide = new MapVariables();
@@ -127,10 +127,10 @@ public class momentariycore2Variables {
 			if (side.isServer()) {
 				message.data.markDirty();
 				if (message.type == 0) {
-					momentariycore2.PACKET_HANDLER.send(PacketDistributor.ALL.noArg(), message);
+					MomentariyCore.PACKET_HANDLER.send(PacketDistributor.ALL.noArg(), message);
 					world.getServer().getWorld(DimensionType.OVERWORLD).getSavedData().set(message.data);
 				} else {
-					momentariycore2.PACKET_HANDLER.send(PacketDistributor.DIMENSION.with(world.dimension::getType), message);
+					MomentariyCore.PACKET_HANDLER.send(PacketDistributor.DIMENSION.with(world.dimension::getType), message);
 					((ServerWorld) world).getSavedData().set(message.data);
 				}
 			} else {

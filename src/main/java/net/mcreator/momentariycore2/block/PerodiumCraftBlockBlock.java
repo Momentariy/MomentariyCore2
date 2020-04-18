@@ -1,5 +1,5 @@
 
-package net.mcreator.momentariycore2;
+package net.mcreator.momentariycore2.block;
 
 import net.minecraftforge.registries.ObjectHolder;
 import net.minecraftforge.common.ToolType;
@@ -13,21 +13,24 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Block;
 
+import net.mcreator.momentariycore2.itemgroup.MC2TABItemGroup;
+import net.mcreator.momentariycore2.MomentariyCoreElements;
+
 import java.util.List;
 import java.util.Collections;
 
-@Elementsmomentariycore2.ModElement.Tag
-public class MCreatorPerodiumCraftBlock extends Elementsmomentariycore2.ModElement {
+@MomentariyCoreElements.ModElement.Tag
+public class PerodiumCraftBlockBlock extends MomentariyCoreElements.ModElement {
 	@ObjectHolder("momentariycore2:perodiumcraftblock")
 	public static final Block block = null;
-	public MCreatorPerodiumCraftBlock(Elementsmomentariycore2 instance) {
+	public PerodiumCraftBlockBlock(MomentariyCoreElements instance) {
 		super(instance, 4);
 	}
 
 	@Override
 	public void initElements() {
 		elements.blocks.add(() -> new CustomBlock());
-		elements.items.add(() -> new BlockItem(block, new Item.Properties().group(MCreatorMC2TAB.tab)).setRegistryName(block.getRegistryName()));
+		elements.items.add(() -> new BlockItem(block, new Item.Properties().group(MC2TABItemGroup.tab)).setRegistryName(block.getRegistryName()));
 	}
 	public static class CustomBlock extends Block {
 		public CustomBlock() {

@@ -1,5 +1,5 @@
 
-package net.mcreator.momentariycore2;
+package net.mcreator.momentariycore2.block;
 
 import net.minecraftforge.registries.ObjectHolder;
 import net.minecraftforge.common.ToolType;
@@ -13,21 +13,24 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Block;
 
+import net.mcreator.momentariycore2.itemgroup.MC2TABItemGroup;
+import net.mcreator.momentariycore2.MomentariyCoreElements;
+
 import java.util.List;
 import java.util.Collections;
 
-@Elementsmomentariycore2.ModElement.Tag
-public class MCreatorMomentariyCoreBlock extends Elementsmomentariycore2.ModElement {
+@MomentariyCoreElements.ModElement.Tag
+public class MomentariyCoreBlockBlock extends MomentariyCoreElements.ModElement {
 	@ObjectHolder("momentariycore2:momentariycoreblock")
 	public static final Block block = null;
-	public MCreatorMomentariyCoreBlock(Elementsmomentariycore2 instance) {
+	public MomentariyCoreBlockBlock(MomentariyCoreElements instance) {
 		super(instance, 2);
 	}
 
 	@Override
 	public void initElements() {
 		elements.blocks.add(() -> new CustomBlock());
-		elements.items.add(() -> new BlockItem(block, new Item.Properties().group(MCreatorMC2TAB.tab)).setRegistryName(block.getRegistryName()));
+		elements.items.add(() -> new BlockItem(block, new Item.Properties().group(MC2TABItemGroup.tab)).setRegistryName(block.getRegistryName()));
 	}
 	public static class CustomBlock extends Block {
 		public CustomBlock() {

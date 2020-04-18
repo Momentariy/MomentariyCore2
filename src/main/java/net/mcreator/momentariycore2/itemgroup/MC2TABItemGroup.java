@@ -1,5 +1,5 @@
 
-package net.mcreator.momentariycore2;
+package net.mcreator.momentariycore2.itemgroup;
 
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.api.distmarker.Dist;
@@ -7,9 +7,12 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemGroup;
 
-@Elementsmomentariycore2.ModElement.Tag
-public class MCreatorMC2TAB extends Elementsmomentariycore2.ModElement {
-	public MCreatorMC2TAB(Elementsmomentariycore2 instance) {
+import net.mcreator.momentariycore2.item.MomentariyItem;
+import net.mcreator.momentariycore2.MomentariyCoreElements;
+
+@MomentariyCoreElements.ModElement.Tag
+public class MC2TABItemGroup extends MomentariyCoreElements.ModElement {
+	public MC2TABItemGroup(MomentariyCoreElements instance) {
 		super(instance, 5);
 	}
 
@@ -19,7 +22,7 @@ public class MCreatorMC2TAB extends Elementsmomentariycore2.ModElement {
 			@OnlyIn(Dist.CLIENT)
 			@Override
 			public ItemStack createIcon() {
-				return new ItemStack(MCreatorMomentariy.block, (int) (1));
+				return new ItemStack(MomentariyItem.block, (int) (1));
 			}
 
 			@OnlyIn(Dist.CLIENT)

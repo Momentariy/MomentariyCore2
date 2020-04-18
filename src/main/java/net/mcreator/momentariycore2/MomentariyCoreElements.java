@@ -11,14 +11,18 @@ import net.minecraftforge.fml.network.PacketDistributor;
 import net.minecraftforge.fml.network.NetworkEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.api.distmarker.Dist;
 
 import net.minecraft.world.storage.WorldSavedData;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.tags.Tag;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.item.Item;
@@ -30,70 +34,75 @@ import java.util.function.Supplier;
 import java.util.function.Function;
 import java.util.function.BiConsumer;
 import java.util.Set;
+import java.util.Map;
 import java.util.List;
+import java.util.HashMap;
 import java.util.Collections;
 import java.util.ArrayList;
 
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Retention;
 
-public class Elementsmomentariycore2 {
-	protected final List<ModElement> elements = new ArrayList<>();
-	protected final List<Supplier<Block>> blocks = new ArrayList<>();
-	protected final List<Supplier<Item>> items = new ArrayList<>();
-	protected final List<Supplier<Biome>> biomes = new ArrayList<>();
-	protected final List<Supplier<EntityType<?>>> entities = new ArrayList<>();
-	public Elementsmomentariycore2() {
+public class MomentariyCoreElements {
+	public final List<ModElement> elements = new ArrayList<>();
+	public final List<Supplier<Block>> blocks = new ArrayList<>();
+	public final List<Supplier<Item>> items = new ArrayList<>();
+	public final List<Supplier<Biome>> biomes = new ArrayList<>();
+	public final List<Supplier<EntityType<?>>> entities = new ArrayList<>();
+	public static Map<ResourceLocation, net.minecraft.util.SoundEvent> sounds = new HashMap<>();
+	public MomentariyCoreElements() {
 		try {
 			ModFileScanData modFileInfo = ModList.get().getModFileById("momentariycore2").getFile().getScanResult();
 			Set<ModFileScanData.AnnotationData> annotations = modFileInfo.getAnnotations();
 			for (ModFileScanData.AnnotationData annotationData : annotations) {
 				if (annotationData.getAnnotationType().getClassName().equals(ModElement.Tag.class.getName())) {
 					Class<?> clazz = Class.forName(annotationData.getClassType().getClassName());
-					if (clazz.getSuperclass() == Elementsmomentariycore2.ModElement.class)
-						elements.add((Elementsmomentariycore2.ModElement) clazz.getConstructor(this.getClass()).newInstance(this));
+					if (clazz.getSuperclass() == MomentariyCoreElements.ModElement.class)
+						elements.add((MomentariyCoreElements.ModElement) clazz.getConstructor(this.getClass()).newInstance(this));
 				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		Collections.sort(elements);
-		elements.forEach(Elementsmomentariycore2.ModElement::initElements);
-		this.addNetworkMessage(momentariycore2Variables.WorldSavedDataSyncMessage.class, momentariycore2Variables.WorldSavedDataSyncMessage::buffer,
-				momentariycore2Variables.WorldSavedDataSyncMessage::new, momentariycore2Variables.WorldSavedDataSyncMessage::handler);
+		elements.forEach(MomentariyCoreElements.ModElement::initElements);
+		this.addNetworkMessage(MomentariyCoreVariables.WorldSavedDataSyncMessage.class, MomentariyCoreVariables.WorldSavedDataSyncMessage::buffer,
+				MomentariyCoreVariables.WorldSavedDataSyncMessage::new, MomentariyCoreVariables.WorldSavedDataSyncMessage::handler);
 		MinecraftForge.EVENT_BUS.register(this);
 	}
 
 	public void registerSounds(RegistryEvent.Register<net.minecraft.util.SoundEvent> event) {
+		for (Map.Entry<ResourceLocation, net.minecraft.util.SoundEvent> sound : sounds.entrySet())
+			event.getRegistry().register(sound.getValue().setRegistryName(sound.getKey()));
 	}
 
 	@SubscribeEvent
 	public void onPlayerLoggedIn(PlayerEvent.PlayerLoggedInEvent event) {
 		if (!event.getPlayer().world.isRemote) {
-			WorldSavedData mapdata = momentariycore2Variables.MapVariables.get(event.getPlayer().world);
-			WorldSavedData worlddata = momentariycore2Variables.WorldVariables.get(event.getPlayer().world);
+			WorldSavedData mapdata = MomentariyCoreVariables.MapVariables.get(event.getPlayer().world);
+			WorldSavedData worlddata = MomentariyCoreVariables.WorldVariables.get(event.getPlayer().world);
 			if (mapdata != null)
-				momentariycore2.PACKET_HANDLER.send(PacketDistributor.PLAYER.with(() -> (ServerPlayerEntity) event.getPlayer()),
-						new momentariycore2Variables.WorldSavedDataSyncMessage(0, mapdata));
+				MomentariyCore.PACKET_HANDLER.send(PacketDistributor.PLAYER.with(() -> (ServerPlayerEntity) event.getPlayer()),
+						new MomentariyCoreVariables.WorldSavedDataSyncMessage(0, mapdata));
 			if (worlddata != null)
-				momentariycore2.PACKET_HANDLER.send(PacketDistributor.PLAYER.with(() -> (ServerPlayerEntity) event.getPlayer()),
-						new momentariycore2Variables.WorldSavedDataSyncMessage(1, worlddata));
+				MomentariyCore.PACKET_HANDLER.send(PacketDistributor.PLAYER.with(() -> (ServerPlayerEntity) event.getPlayer()),
+						new MomentariyCoreVariables.WorldSavedDataSyncMessage(1, worlddata));
 		}
 	}
 
 	@SubscribeEvent
 	public void onPlayerChangedDimension(PlayerEvent.PlayerChangedDimensionEvent event) {
 		if (!event.getPlayer().world.isRemote) {
-			WorldSavedData worlddata = momentariycore2Variables.WorldVariables.get(event.getPlayer().world);
+			WorldSavedData worlddata = MomentariyCoreVariables.WorldVariables.get(event.getPlayer().world);
 			if (worlddata != null)
-				momentariycore2.PACKET_HANDLER.send(PacketDistributor.PLAYER.with(() -> (ServerPlayerEntity) event.getPlayer()),
-						new momentariycore2Variables.WorldSavedDataSyncMessage(1, worlddata));
+				MomentariyCore.PACKET_HANDLER.send(PacketDistributor.PLAYER.with(() -> (ServerPlayerEntity) event.getPlayer()),
+						new MomentariyCoreVariables.WorldSavedDataSyncMessage(1, worlddata));
 		}
 	}
 	private int messageID = 0;
 	public <T> void addNetworkMessage(Class<T> messageType, BiConsumer<T, PacketBuffer> encoder, Function<PacketBuffer, T> decoder,
 			BiConsumer<T, Supplier<NetworkEvent.Context>> messageConsumer) {
-		momentariycore2.PACKET_HANDLER.registerMessage(messageID, messageType, encoder, decoder, messageConsumer);
+		MomentariyCore.PACKET_HANDLER.registerMessage(messageID, messageType, encoder, decoder, messageConsumer);
 		messageID++;
 	}
 
@@ -120,9 +129,9 @@ public class Elementsmomentariycore2 {
 		@Retention(RetentionPolicy.RUNTIME)
 		public @interface Tag {
 		}
-		protected final Elementsmomentariycore2 elements;
+		protected final MomentariyCoreElements elements;
 		protected final int sortid;
-		public ModElement(Elementsmomentariycore2 elements, int sortid) {
+		public ModElement(MomentariyCoreElements elements, int sortid) {
 			this.elements = elements;
 			this.sortid = sortid;
 		}
@@ -134,6 +143,10 @@ public class Elementsmomentariycore2 {
 		}
 
 		public void serverLoad(FMLServerStartingEvent event) {
+		}
+
+		@OnlyIn(Dist.CLIENT)
+		public void clientLoad(FMLClientSetupEvent event) {
 		}
 
 		@Override

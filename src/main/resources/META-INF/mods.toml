@@ -1,23 +1,23 @@
 modLoader="javafml"
-loaderVersion="[28,)"
+loaderVersion="[31,)"
 
 [[mods]]
 modId="momentariycore2"
-version="2.1"
+version="3.0"
 displayName="Momentariy Core2"
 credits="Created using mod maker MCreator - https://mcreator.net/about"
 displayURL="https://perodiumcraft.ucoz.net"
-updateJSONURL="https://perodiumcraft.ucoz.net/MomentariyCore/version.json"
+updateJSONURL="https://github.com/Momentariy/MomentariyCore2/blob/master/version.json"
 logoFile="logo.png"
-authors="Momentariy, MCreator"
+authors="Momentariy"
 description='''
-Core for Momentariy mods on version 1.14.4
+Core for Momentariy mods on version 1.15.2
 '''
 
 [[dependencies.momentariycore2]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.14.4]"
+    versionRange="[1.15.2]"
     ordering="NONE"
     side="BOTH"
 

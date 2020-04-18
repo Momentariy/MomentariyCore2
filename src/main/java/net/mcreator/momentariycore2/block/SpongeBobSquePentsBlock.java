@@ -1,5 +1,5 @@
 
-package net.mcreator.momentariycore2;
+package net.mcreator.momentariycore2.block;
 
 import net.minecraftforge.registries.ObjectHolder;
 import net.minecraftforge.common.ToolType;
@@ -13,27 +13,30 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Block;
 
+import net.mcreator.momentariycore2.itemgroup.MC2TABItemGroup;
+import net.mcreator.momentariycore2.MomentariyCoreElements;
+
 import java.util.List;
 import java.util.Collections;
 
-@Elementsmomentariycore2.ModElement.Tag
-public class MCreatorMomentariyCore2Block extends Elementsmomentariycore2.ModElement {
-	@ObjectHolder("momentariycore2:momentariycore2block")
+@MomentariyCoreElements.ModElement.Tag
+public class SpongeBobSquePentsBlock extends MomentariyCoreElements.ModElement {
+	@ObjectHolder("momentariycore2:spongebobsquepents")
 	public static final Block block = null;
-	public MCreatorMomentariyCore2Block(Elementsmomentariycore2 instance) {
-		super(instance, 3);
+	public SpongeBobSquePentsBlock(MomentariyCoreElements instance) {
+		super(instance, 6);
 	}
 
 	@Override
 	public void initElements() {
 		elements.blocks.add(() -> new CustomBlock());
-		elements.items.add(() -> new BlockItem(block, new Item.Properties().group(MCreatorMC2TAB.tab)).setRegistryName(block.getRegistryName()));
+		elements.items.add(() -> new BlockItem(block, new Item.Properties().group(MC2TABItemGroup.tab)).setRegistryName(block.getRegistryName()));
 	}
 	public static class CustomBlock extends Block {
 		public CustomBlock() {
 			super(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(1f, 10f).lightValue(0).harvestLevel(1)
 					.harvestTool(ToolType.PICKAXE));
-			setRegistryName("momentariycore2block");
+			setRegistryName("spongebobsquepents");
 		}
 
 		@Override

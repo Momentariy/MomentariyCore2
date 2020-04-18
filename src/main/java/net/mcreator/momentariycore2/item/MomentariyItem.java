@@ -1,5 +1,5 @@
 
-package net.mcreator.momentariycore2;
+package net.mcreator.momentariycore2.item;
 
 import net.minecraftforge.registries.ObjectHolder;
 
@@ -7,11 +7,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Item;
 import net.minecraft.block.BlockState;
 
-@Elementsmomentariycore2.ModElement.Tag
-public class MCreatorMomentariy extends Elementsmomentariycore2.ModElement {
+import net.mcreator.momentariycore2.itemgroup.MC2TABItemGroup;
+import net.mcreator.momentariycore2.MomentariyCoreElements;
+
+@MomentariyCoreElements.ModElement.Tag
+public class MomentariyItem extends MomentariyCoreElements.ModElement {
 	@ObjectHolder("momentariycore2:momentariy")
 	public static final Item block = null;
-	public MCreatorMomentariy(Elementsmomentariycore2 instance) {
+	public MomentariyItem(MomentariyCoreElements instance) {
 		super(instance, 1);
 	}
 
@@ -21,7 +24,7 @@ public class MCreatorMomentariy extends Elementsmomentariycore2.ModElement {
 	}
 	public static class ItemCustom extends Item {
 		public ItemCustom() {
-			super(new Item.Properties().group(MCreatorMC2TAB.tab).maxStackSize(64));
+			super(new Item.Properties().group(MC2TABItemGroup.tab).maxStackSize(64));
 			setRegistryName("momentariy");
 		}
 

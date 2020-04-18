@@ -53,6 +53,14 @@
   "variable_elements": [],
   "sound_elements": [],
   "language_map": {
+    "ru_ru": {
+      "itemGroup.tabmc2tab": "ß4Momentariyß0Coreße2",
+      "block.momentariycore2.spongebobsquepents": "ße¡ÎÓÍ Spongebob Squarepants Reload",
+      "item.momentariycore2.momentariy": "ß4Momentariy ßfModder",
+      "block.momentariycore2.momentariycoreblock": "ß4¡ÎÓÍ Momentariyß0Core",
+      "block.momentariycore2.momentariycore2block": "ß4¡ÎÓÍ Momentariy ß0Coreße2",
+      "block.momentariycore2.perodiumcraftblock": "ß8¡ÎÓÍ PerodiumCraft"
+    },
     "en_us": {
       "itemGroup.tabmc2tab": "ß4Momentariyß0Coreße2",
       "block.momentariycore2.spongebobsquepents": "ßeBlock of Spongebob Squarepants Reload",
@@ -65,21 +73,22 @@
   "workspaceSettings": {
     "modid": "momentariycore2",
     "modName": "Momentariy Core2",
-    "version": "2.1",
-    "description": "Core for Momentariy mods on version 1.14.4",
+    "version": "3.0",
+    "description": "Core for Momentariy mods on version 1.15.2",
     "author": "Momentariy",
     "websiteURL": "https://perodiumcraft.ucoz.net",
     "disableForgeVersionCheck": true,
     "serverSideOnly": true,
-    "updateURL": "https://perodiumcraft.ucoz.net/MomentariyCore/version.json",
+    "updateURL": "https://github.com/Momentariy/MomentariyCore2/blob/master/version.json",
     "modPicture": "banner",
     "requiredMods": [],
     "dependencies": [],
     "dependants": [],
     "mcreatorDependencies": [],
-    "currentGenerator": "1.14.4",
-    "usesProFeatures": false,
+    "currentGenerator": "1.15.2",
+    "credits": "Created using mod maker MCreator - https://mcreator.net/about",
+    "modElementsPackage": "net.mcreator.momentariycore2",
     "lockBaseModFiles": false
   },
-  "mcreatorVersion": 202000209617
+  "mcreatorVersion": 202000316610
 }
